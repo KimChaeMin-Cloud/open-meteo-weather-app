@@ -40,7 +40,6 @@ def geocode_city(name: str):
     }
 
 def fetch_weather(lat, lon, timezone="auto", unit="celsius", days=7):
-    """Open-Meteo Forecast API (무료, 무키)"""
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
         "latitude": lat,
@@ -51,8 +50,8 @@ def fetch_weather(lat, lon, timezone="auto", unit="celsius", days=7):
         "timezone": timezone,
         "forecast_days": days,
         "temperature_unit": unit,
-        "windspeed_unit": "m/s",
-        "precipitation_unit": "mm"
+        "windspeed_unit": "ms",   # <-- 여기!  m/s 말고 ms
+        "precipitation_unit": "mm",
     }
     r = requests.get(url, params=params, timeout=20)
     r.raise_for_status()
